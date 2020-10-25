@@ -15,6 +15,8 @@ public class LangRepository {
     }
 
     Optional<Language> findById(Long id) {
-        return languages.stream().filter(l -> l.getId().equals(id)).findFirst();
+        return languages.stream().
+                filter(l -> l.getId().equals(id))
+                .findFirst();
     }
 }
