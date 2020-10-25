@@ -6,7 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 
 public class HelloServiceTest {
-    private HelloService serviceTest = new HelloService();
+    private HelloService serviceTest = new HelloService(new LangRepository());
     @Test
     public void test_null_prepareGreeting_returnValue() throws Exception {
 
