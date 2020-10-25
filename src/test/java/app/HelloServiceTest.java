@@ -65,6 +65,23 @@ public class HelloServiceTest {
 
     }
 
+    @Test
+    public void test_nonExistingLang_returnsGreetingWithFallbackLang() {
+        LangRepository mockReposetory = new LangRepository() {
+            @Override
+            Optional<Language> findById(Long id) {
+                return Optional.empty();
+            }
+        };
+
+        HelloService serviceTest = new HelloService(mockReposetory);
+
+        String result = serviceTest.prepareGreeting(null, "-1");
+
+        assertEquals(HelloService.FALLBACK_LANG.getGreetingMsg() + " " + HelloService.FALLBACK_NAME + "!", result);
+
+    }
+
     private LangRepository fallbackLangIdReposetory() {
         return new LangRepository() {
             @Override
