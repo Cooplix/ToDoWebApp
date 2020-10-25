@@ -1,17 +1,17 @@
 package app;
 
 class Language {
-    private Long id;
+    private Integer id;
     private String greetingMsg;
     private String code;
 
-    public Language(Long id, String greetingMsg, String code) {
+    public Language(Integer id, String greetingMsg, String code) {
         this.id = id;
         this.greetingMsg = greetingMsg;
         this.code = code;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 

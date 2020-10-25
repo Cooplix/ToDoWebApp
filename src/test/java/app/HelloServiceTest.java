@@ -69,7 +69,7 @@ public class HelloServiceTest {
     public void test_nonExistingLang_returnsGreetingWithFallbackLang() {
         LangRepository mockReposetory = new LangRepository() {
             @Override
-            Optional<Language> findById(Long id) {
+            Optional<Language> findById(Integer id) {
                 return Optional.empty();
             }
         };
@@ -85,7 +85,7 @@ public class HelloServiceTest {
     private LangRepository fallbackLangIdReposetory() {
         return new LangRepository() {
             @Override
-            Optional<Language> findById(Long id) {
+            Optional<Language> findById(Integer id) {
                 if (id.equals(HelloService.FALLBACK_LANG.getId())) {
                     return Optional.of(new Language(null, FALLBACK_HOLA, null));
                 }
@@ -100,7 +100,7 @@ public class HelloServiceTest {
          */
         return new LangRepository() {
             @Override
-            Optional<Language> findById(Long id) {
+            Optional<Language> findById(Integer id) {
                 return Optional.of(new Language(null, WELCOME, null));
             }
         };
