@@ -52,6 +52,14 @@
             <artifactId>jetty-annotations</artifactId>
             <version>${jetty.version}</version>
         </dependency>
+
+        <!-- database -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.200</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -82,6 +90,17 @@
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
+
+            <plugin>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-maven-plugin</artifactId>
+            <version>7.0.4</version>
+            <configuration>
+                <url>jdbc:h2:file:./db</url>
+                <user>sa</user>
+            </configuration>
+            </plugin>
+
         </plugins>
     </build>
 
