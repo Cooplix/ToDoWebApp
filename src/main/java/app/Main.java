@@ -29,7 +29,7 @@ public class Main {
         });
         webapp.setAttribute("org.eclipse.jetty.server.webapp.ContainerIncludeJarPattern", ".*/classes/.*");
 //        webapp.addServlet(app.HelloServlet.class, "/api/*");
-        var server = new Server(8080);
+        var server = new Server(8081);
         server.setHandler(webapp);
 
         server.start();
