@@ -9,10 +9,10 @@ import static org.junit.Assert.assertEquals;
 
 public class HelloServiceTest {
     private final static String WELCOME = "Hello";
+    private final static String FALLBACK_HOLA = "Hola";
 
     @Test
     public void test_nullName_prepareGreeting_returnValue() {
-
 
         LangRepository mockReposetory = getMockLangReposetory();
 
@@ -41,25 +41,40 @@ public class HelloServiceTest {
 
     @Test
     public void test_nullLang_prepareGreeting_returnsIdLang() {
-        String hola = "Hola";
-        LangRepository mockReposetory = new LangRepository() {
+
+        LangRepository mockReposetory = fallbackLangIdReposetory();
+
+        HelloService serviceTest = new HelloService(mockReposetory);
+
+        String result = serviceTest.prepareGreeting(null, null);
+
+        assertEquals(FALLBACK_HOLA + " " + HelloService.FALLBACK_NAME + "!", result);
+
+    }
+
+    @Test
+    public void test_textLang_prepareGreeting_returnsIdLang() {
+
+        LangRepository mockReposetory = fallbackLangIdReposetory();
+
+        HelloService serviceTest = new HelloService(mockReposetory);
+
+        String result = serviceTest.prepareGreeting(null, "aaa");
+
+        assertEquals(FALLBACK_HOLA + " " + HelloService.FALLBACK_NAME + "!", result);
+
+    }
+
+    private LangRepository fallbackLangIdReposetory() {
+        return new LangRepository() {
             @Override
             Optional<Language> findById(Long id) {
-                if(id.equals(HelloService.FALLBACK_LANG.getId())) {
-                    return Optional.of(new Language(null, hola, null));
+                if (id.equals(HelloService.FALLBACK_LANG.getId())) {
+                    return Optional.of(new Language(null, FALLBACK_HOLA, null));
                 }
                 return Optional.empty();
             }
         };
-
-        HelloService serviceTest = new HelloService(mockReposetory);
-
-        String name = "test";
-
-        String result = serviceTest.prepareGreeting(null, null);
-
-        assertEquals(hola + " " + HelloService.FALLBACK_NAME + "!", result);
-
     }
 
     private LangRepository getMockLangReposetory() {
@@ -73,4 +88,5 @@ public class HelloServiceTest {
             }
         };
     }
+
 }
