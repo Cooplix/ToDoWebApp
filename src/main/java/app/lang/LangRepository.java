@@ -1,14 +1,16 @@
-package app;
+package app.lang;
+
+import app.HibernateUtil;
 
 import java.util.List;
 import java.util.Optional;
 
 public class LangRepository {
-    List<Language> findAll() {
+    List<Lang> findAll() {
         var session =  HibernateUtil.getSessionFactory().openSession();
         var transaction = session.beginTransaction();
 
-        var result = session.createQuery("from Language", Language.class).list();
+        var result = session.createQuery("from Lang", Lang.class).list();
 
         transaction.commit();
         session.close();
@@ -17,10 +19,10 @@ public class LangRepository {
     }
 
 
-    Optional<Language> findById(Integer id) {
+    public Optional<Lang> findById(Integer id) {
         var session =  HibernateUtil.getSessionFactory().openSession();
         var transaction = session.beginTransaction();
-        var result = session.get(Language.class, id);
+        var result = session.get(Lang.class, id);
 
         transaction.commit();
         session.close();

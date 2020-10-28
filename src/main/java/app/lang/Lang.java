@@ -1,4 +1,4 @@
-package app;
+package app.lang;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -8,9 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "languages")
+//FIXME
+@Table(name = "LANGUAGES")
 
-class Language {
+public class Lang {
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy =  "increment")
@@ -19,13 +20,13 @@ class Language {
     private String greetingMsg;
     private String code;
 
-    public Language(Integer id, String greetingMsg, String code) {
+    public Lang(Integer id, String greetingMsg, String code) {
         this.id = id;
         this.greetingMsg = greetingMsg;
         this.code = code;
     }
 
-    public Language() {
+    public Lang() {
 
     }
 

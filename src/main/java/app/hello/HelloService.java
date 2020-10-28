@@ -1,5 +1,7 @@
-package app;
+package app.hello;
 
+import app.lang.LangRepository;
+import app.lang.Lang;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -7,7 +9,7 @@ import java.util.Optional;
 
 class HelloService {
     static final String FALLBACK_NAME = "world";
-    static final Language FALLBACK_LANG = new Language(1, "Hello", "en");
+    static final Lang FALLBACK_LANG = new Lang(1, "Hello", "en");
     private final Logger logger = LoggerFactory.getLogger(HelloService.class);
 
     private LangRepository repository;

@@ -30,7 +30,7 @@ public class Main {
                 new JettyWebXmlConfiguration()
         });
         webapp.setAttribute("org.eclipse.jetty.server.webapp.ContainerIncludeJarPattern", ".*/classes/.*");
-//        webapp.addServlet(app.HelloServlet.class, "/api/*");
+//        webapp.addServlet(app.hello.HelloServlet.class, "/api/*");
         var server = new Server(8081);
         server.setHandler(webapp);
 
