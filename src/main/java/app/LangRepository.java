@@ -1,22 +1,22 @@
 package app;
 
+import org.eclipse.jetty.server.session.Session;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class LangRepository {
-    private List<Language> languages;
-
-    LangRepository() {
-        languages = new ArrayList<>(5);
-        languages.add(new Language(0, "Hello", "en"));
-        languages.add(new Language(1, "Witam", "pl"));
-        languages.add(new Language(2, "Привет", "ru"));
-    }
-
     Optional<Language> findById(Integer id) {
-        return languages.stream().
-                filter(l -> l.getId().equals(id))
-                .findFirst();
+        var session =  HibernateUtil.getSessionFactory().openSession();
+        var transaction = session.beginTransaction();
+        var result = session.get(Language.class, id);
+
+
+        transaction.commit();
+        session.close();
+
+        return Optional.ofNullable(result);
+
     }
 }
